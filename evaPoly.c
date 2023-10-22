@@ -1,41 +1,37 @@
 #include <stdio.h>
-int power(int x,int i)
+struct poly
 {
-int val =1;
-while(i>0)
+    int pow;
+    int coef;
+};
+int power(int x,int p)
 {
-val *= x;
-i--; 
-}
-return val;
+    int va =1;
+    while(p>0)
+    {
+        va *= x;
+        p--;
+    }
+    return va;
 }
 void main()
 {
-int n,x,sum=0;
-printf("Enter the order of the polynomial : ");
-scanf("%d",&n);
-printf("Enter the value of x : ");
-scanf("%d",&x);
-struct poly
-{
-int coef;
-}a[n];
-for(int i=n;i>=0;i--)
-	{
-		printf("Enter the coeff of x^%d in the polynomial : ",i);
-		scanf("%d",&a[i].coef);
-	}
-for(int i=n;i>0;i--)
-{
-sum += a[i].coef*power(x,i);
-}
-sum += a[0].coef;
-printf("Polynominal  : ");
-	for(int i=n;i>=0;i--)
-	{
-		if(i<n)
-		printf("+");
-		printf("%dx^%d ",a[i].coef,i);
-	}
-printf("\nSum : %d",sum);
+    int n,i,x,val=0;
+    printf("Enter the number of elements in poly : ");
+    scanf("%d",&n);
+    struct poly p[n];
+    for(i = n;i>0;i--)
+    {
+        printf("Enter the power : ");
+        scanf("%d",&p[i].pow);
+        printf("Enter the coef of %d power : ",p[i].pow);
+        scanf("%d",&p[i].coef);
+    }
+    printf("Enter the value of x : ");
+    scanf("%d",&x);
+    for(i =n ; i>0;i--)
+    {
+        val += p[i].coef*(power(x,p[i].pow));
+    }
+    printf("%d",val);
 }
